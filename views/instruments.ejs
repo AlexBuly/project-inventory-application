@@ -7,7 +7,12 @@
 </head>
 <body>
     <%- include('partials/header') %>
+
     <h1><%= title %></h1>
     <p>A list of musical instruments</p>
+
+    <% categories.forEach((category, index) => { %>
+        <p><%= category.categoryName %></p>
+    <% }) %>
 </body>
 </html>
