@@ -3,7 +3,7 @@ const pool = require("../db/pool");
 const getInstrumentsController = async (req, res) => {
     try {
         const { rows: category }  = await pool.query(
-            "SELECT * FROM category ORDER BY id ASC;"
+            "SELECT * FROM category WHERE id = 1 ORDER BY id ASC;"
         )
         res.render("instruments", { title: "Intruments", category });
     } catch (err) {
