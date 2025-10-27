@@ -9,5 +9,8 @@
      <%- include('partials/header') %>
     <h1><%= title %></h1>
     <p>A list of all instrument accessories.</p>
+    <% category.forEach((item, index) => { %>
+        <p><%= item.categoryname %></p>
+    <% }) %>
 </body>
 </html>
