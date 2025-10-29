@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+</head>
+<body>
+    <%- include('partials/header') %>
+    <h1><%= title %></h1>
+    <form action="/instruments/new" method="POST">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" required>
+        <br><br>
+        <label for="description">Description</label required>
+        <input type="text" name="description" id="description">
+        <br><br>
+        <label for="price">Price</label>
+        <input type="text" name="price" id="price"></input required>
+        <br><br>
+        <input type="submit">
+    </form>
+</body>
+</html>
