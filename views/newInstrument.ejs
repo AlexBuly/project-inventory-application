@@ -8,15 +8,15 @@
 <body>
     <%- include('partials/header') %>
     <h1><%= title %></h1>
-    <form action="/instruments/new" method="POST">
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name" required>
+    <form action="/instruments/newInstrument" method="POST">
+        <label for="item_name">Name</label>
+        <input type="text" name="item_name" id="name" required>
         <br><br>
         <label for="description">Description</label required>
         <input type="text" name="description" id="description">
         <br><br>
-        <label for="price">Price</label>
-        <input type="text" name="price" id="price"></input required>
+        <label for="item_price">Price</label>
+        <input type="text" name="item_price" id="price"></input required>
         <br><br>
         <input type="submit">
     </form>
