@@ -1,5 +1,9 @@
 const pool = require("../db/pool");
 
+const renderNewInstrumentForm = (req, res) => {
+  res.render("newInstrument", { title: "Add Instrument" });
+};
+
 const getInstrumentsController = async (req, res) => {
     try {
         const { rows: items }  = await pool.query(
@@ -16,12 +20,20 @@ const getInstrumentsController = async (req, res) => {
 };
 
 const addInstrument = async (req, res) => {
-    try {
-        res.render("newInstrument", {title: "Add Instrument"});
-    } catch (err) {
-        console.error(err);
-        res.status(500).send("Server error");
-    }
+   try {
+    const { item_name, description, item_price } = req.body;
+    await pool.query(
+      `
+        INSERT INTO item (item_name, description, category_id, item_price)
+        VALUES ($1, $2, 1, $3);
+      `,
+      [item_name, description, item_price]
+    );
+    res.redirect("/instruments"); // redirect back to list
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
 }
 
-module.exports = { getInstrumentsController, addInstrument };
+module.exports = { renderNewInstrumentForm, getInstrumentsController, addInstrument };
