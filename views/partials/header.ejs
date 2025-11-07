@@ -1,5 +1,9 @@
 <div class="navbar">
-  <a class="home-link" href="/">Home</a>
-  <a class="instruments-link" href="/instruments">Instruments</a>
-   <a class="accessories-link" href="/accessories">Accessories</a>
+  <a href="/" class="home">Home</a>
+  <% categories.forEach(category => { %>
+      <a href="/items/<%= category.categoryname.toLowerCase() %>">
+        <%= category.categoryname %>
+      </a>
+    <% }) %>
+    <a href="/items/new">Add New Item</a>
 </div>
