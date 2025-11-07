@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+</head>
+<body>
+  <%- include('partials/header', { categories }) %>
+
+  <h1><%= title %></h1>
+
+  <% if (items.length === 0) { %>
+    <p>No items found in this category.</p>
+  <% } else { %>
+    <% items.forEach(item => { %>
+      <p><strong><%= item.item_name %></strong></p>
+      <p><%= item.description %></p>
+      <p>Price: $<%= item.item_price %></p>
+      <a href="/items/<%= item.item_id %>/edit">Edit</a>
+      <form action="/items/<%= item.item_id %>/delete" method="POST" style="display:inline;">
+        <button type="submit" onclick="return confirm('Delete this item?')">Delete</button>
+      </form>
+      <hr>
+    <% }) %>
+  <% } %>
+</body>
+</html>
