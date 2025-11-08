@@ -5,33 +5,36 @@
   <title><%= title %></title>
 </head>
 <body>
-  <%- include('partials/header', { categories }) %>
+  <%- include('partials/header', { categories: locals.categories }) %>
+
   <h1><%= title %></h1>
 
-  <form action="<%= item ? '/items/' + item.item_id + '/edit' : '/items/new' %>" method="POST">
-    <label for="item_name">Name</label>
-    <input type="text" name="item_name" id="item_name" value="<%= item ? item.item_name : '' %>" required>
+  <% if (errors && errors.length > 0) { %>
+    <ul style="color: red;">
+      <% errors.forEach(err => { %>
+        <li><%= err.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
 
-    <br><br>
-    <label for="description">Description</label>
-    <input type="text" name="description" id="description" value="<%= item ? item.description : '' %>" required>
+  <form action="<%= item && item.item_id ? '/items/' + item.item_id + '/edit' : '/items/new' %>" method="POST">
+    <label for="item_name">Name:</label>
+    <input type="text" id="item_name" name="item_name" value="<%= item ? item.item_name : '' %>" required><br><br>
 
-    <br><br>
-    <label for="item_price">Price</label>
-    <input type="number" step="0.01" name="item_price" id="item_price" value="<%= item ? item.item_price : '' %>" required>
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description" value="<%= item ? item.description : '' %>" required><br><br>
 
-    <br><br>
-    <label for="category_id">Category</label>
+    <label for="item_price">Price:</label>
+    <input type="number" id="item_price" name="item_price" step="0.01" value="<%= item ? item.item_price : '' %>" required><br><br>
+
+    <label for="category_id">Category:</label>
     <select name="category_id" id="category_id">
       <% categories.forEach(cat => { %>
-        <option value="<%= cat.id %>" <%= item && item.category_id === cat.id ? 'selected' : '' %>>
-          <%= cat.categoryname %>
-        </option>
+        <option value="<%= cat.id %>" <%= item && item.category_id == cat.id ? 'selected' : '' %>><%= cat.categoryname %></option>
       <% }) %>
-    </select>
+    </select><br><br>
 
-    <br><br>
-    <input type="submit" value="<%= item ? 'Update' : 'Create' %> Item">
+    <button type="submit"><%= item && item.item_id ? 'Update' : 'Add' %> Item</button>
   </form>
 </body>
 </html>

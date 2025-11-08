@@ -5,8 +5,7 @@
   <title><%= title %></title>
 </head>
 <body>
-  <%- include('partials/header', { categories }) %>
-
+  <%- include('partials/header', { categories: locals.categories }) %>
   <h1><%= title %></h1>
 
   <% if (items.length === 0) { %>
@@ -15,10 +14,10 @@
     <% items.forEach(item => { %>
       <p><strong><%= item.item_name %></strong></p>
       <p><%= item.description %></p>
-      <p>Price: $<%= item.item_price %></p>
+      <p>$<%= item.item_price %></p>
       <a href="/items/<%= item.item_id %>/edit">Edit</a>
       <form action="/items/<%= item.item_id %>/delete" method="POST" style="display:inline;">
-        <button type="submit" onclick="return confirm('Delete this item?')">Delete</button>
+        <button type="submit" onclick="return confirm('Delete this item?');">Delete</button>
       </form>
       <hr>
     <% }) %>
