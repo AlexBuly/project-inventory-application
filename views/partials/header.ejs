@@ -1,5 +1,6 @@
 <div class="navbar">
   <a href="/" class="home">Home</a>
+  <a href="/categories">Categories</a>
   <% if (categories && categories.length > 0) { %>
     <% categories.forEach(category => { %>
       <a href="/items/<%= category.categoryname.toLowerCase() %>">
