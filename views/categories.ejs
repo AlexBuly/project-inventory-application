@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+</head>
+<body>
+  <%- include('partials/header', { categories: locals.categories }) %>
+
+  <h1><%= title %></h1>
+  <a href="/categories/new">Add New Category</a>
+
+  <% if (categories.length === 0) { %>
+    <p>No categories found.</p>
+  <% } else { %>
+    <ul>
+      <% categories.forEach(category => { %>
+        <li>
+          <strong><%= category.categoryname %></strong>
+          <a href="/categories/<%= category.id %>/edit">Edit</a>
+          <form action="/categories/<%= category.id %>/delete" method="POST" style="display:inline;">
+            <button type="submit" onclick="return confirm('Delete this category?');">Delete</button>
+          </form>
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
+</body>
+</html>

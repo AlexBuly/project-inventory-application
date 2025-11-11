@@ -25,9 +25,12 @@ app.use(async (req, res, next) => {
 // Routers
 const indexRouter = require("./routes/indexRouter");
 const itemsRouter = require("./routes/itemsRouter");
+const categoriesRouter = require("./routes/categoriesRouter");
 
 app.use("/", indexRouter);
 app.use("/items", itemsRouter);
+app.use("/categories", categoriesRouter);
+
 
 app.listen(PORT, () =>
   console.log(`App running at http://localhost:${PORT}`)
