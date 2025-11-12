@@ -3,10 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <title><%= title %></title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <%- include('partials/header', { categories: locals.categories }) %>
+  <%- include('partials/header', { categories }) %>
+
   <h1><%= title %></h1>
   <p>A list of all items</p>
+
+  <% if (items.length === 0) { %>
+    <p>No items found.</p>
+  <% } else { %>
+    <ul>
+      <% items.forEach(item => { %>
+        <li>
+          <strong><%= item.item_name %></strong> — 
+          <%= item.description %> — 
+          $<%= item.item_price %> — 
+          Category: <%= item.categoryname %>
+
+          <a href="/items/<%= item.item_id %>/edit">Edit</a>
+          <form 
+            action="/items/<%= item.item_id %>/delete" 
+            method="POST" 
+            style="display:inline"
+            onsubmit="return confirm('Delete this item?');">
+            <button type="submit">Delete</button>
+          </form>
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
+
+  <a href="/items/new">Add New Item</a>
 </body>
 </html>
