@@ -1,12 +1,12 @@
 <div class="navbar">
-  <a href="/" class="home">Home</a>
-  <a href="/categories">Categories</a>
+  <a href="/" class="link">Home</a>
+  <a href="/categories" class="link">Categories</a>
   <% if (categories && categories.length > 0) { %>
     <% categories.forEach(category => { %>
-      <a href="/items/<%= category.categoryname.toLowerCase() %>">
+      <a href="/items/<%= category.categoryname.toLowerCase() %>" class="link">
         <%= category.categoryname %>
       </a>
     <% }) %>
   <% } %>
-  <a href="/items/new">Add New Item</a>
+  <a href="/items/new" class="link">Add New Item</a>
 </div>
