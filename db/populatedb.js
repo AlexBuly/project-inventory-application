@@ -27,7 +27,7 @@ async function populate() {
                     item_name TEXT,
                     description TEXT NOT NULL,
                     category_id INT,
-                    FOREIGN KEY (category_id) REFERENCES category(id),
+                    FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE CASCASE,
                     item_price DECIMAL(10, 2) NOT NULL
                 );
             `
