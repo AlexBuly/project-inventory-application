@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title><%= title %></title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
   <%- include('partials/header', { categories: locals.categories }) %>
@@ -11,16 +12,19 @@
   <% if (items.length === 0) { %>
     <p>No items found in this category.</p>
   <% } else { %>
-    <% items.forEach(item => { %>
-      <p><strong><%= item.item_name %></strong></p>
-      <p><%= item.description %></p>
-      <p>$<%= item.item_price %></p>
-      <a href="/items/<%= item.item_id %>/edit">Edit</a>
-      <form action="/items/<%= item.item_id %>/delete" method="POST" style="display:inline;">
-        <button type="submit" onclick="return confirm('Delete this item?');">Delete</button>
-      </form>
-      <hr>
+    <div class="items-container">
+      <% items.forEach(item => { %>
+      <div class="main">
+        <p><strong><%= item.item_name %></strong></p>
+        <p>Description: <%= item.description %></p>
+        <p>Price: $<%= item.item_price %></p>
+        <a class="edit" href="/items/<%= item.item_id %>/edit">Edit</a>
+        <form action="/items/<%= item.item_id %>/delete" method="POST" style="display:inline;">
+          <button type="submit" onclick="return confirm('Delete this item?');">Delete</button>
+        </form>
+      </div>
     <% }) %>
   <% } %>
+    </div>
 </body>
 </html>

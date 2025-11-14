@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title><%= title %></title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
   <%- include('partials/header', { categories: locals.categories }) %>
@@ -17,7 +18,8 @@
     </ul>
   <% } %>
 
-  <form action="<%= item && item.item_id ? '/items/' + item.item_id + '/edit' : '/items/new' %>" method="POST">
+  <div class="items-container">
+    <form class="main" action="<%= item && item.item_id ? '/items/' + item.item_id + '/edit' : '/items/new' %>" method="POST">
     <label for="item_name">Name:</label>
     <input type="text" id="item_name" name="item_name" value="<%= item ? item.item_name : '' %>" required><br><br>
 
@@ -33,8 +35,8 @@
         <option value="<%= cat.id %>" <%= item && item.category_id == cat.id ? 'selected' : '' %>><%= cat.categoryname %></option>
       <% }) %>
     </select><br><br>
-
     <button type="submit"><%= item && item.item_id ? 'Update' : 'Add' %> Item</button>
   </form>
+  </div>
 </body>
 </html>

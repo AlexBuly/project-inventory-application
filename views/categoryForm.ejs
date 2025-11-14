@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title><%= title %></title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
   <%- include('partials/header', { categories: locals.categories }) %>
@@ -16,12 +17,13 @@
       <% }) %>
     </ul>
   <% } %>
-
-  <form action="<%= category ? '/categories/' + category.id + '/edit' : '/categories/new' %>" method="POST">
-    <label for="categoryname">Category Name:</label>
-    <input type="text" id="categoryname" name="categoryname" value="<%= category ? category.categoryname : '' %>" required>
-    <br><br>
+  <div class="items-container">
+    <form class="main" action="<%= category ? '/categories/' + category.id + '/edit' : '/categories/new' %>" method="POST">
+      <label for="categoryname">Category Name:</label>
+      <input type="text" id="categoryname" name="categoryname" value="<%= category ? category.categoryname : '' %>" required>
+      <br><br>
     <button type="submit"><%= category ? "Update" : "Create" %></button>
   </form>
+  </div>
 </body>
 </html>

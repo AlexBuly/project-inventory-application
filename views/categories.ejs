@@ -3,27 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <title><%= title %></title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
   <%- include('partials/header', { categories: locals.categories }) %>
 
   <h1><%= title %></h1>
-  <a href="/categories/new">Add New Category</a>
-
   <% if (categories.length === 0) { %>
     <p>No categories found.</p>
   <% } else { %>
-    <ul>
+    <div class="items-container">
       <% categories.forEach(category => { %>
-        <li>
-          <strong><%= category.categoryname %></strong>
-          <a href="/categories/<%= category.id %>/edit">Edit</a>
+        <div class="main">
+          <h3>Category name: <%= category.categoryname %></h3>
+          <br>
+          <a class="edit" href="/categories/<%= category.id %>/edit">Edit</a>
           <form action="/categories/<%= category.id %>/delete" method="POST" style="display:inline;">
             <button type="submit" onclick="return confirm('Delete this category?');">Delete</button>
           </form>
-        </li>
+        </div>
       <% }) %>
-    </ul>
+      <a class="edit" href="/categories/new">Add New Category</a>
+    </div>
   <% } %>
 </body>
 </html>

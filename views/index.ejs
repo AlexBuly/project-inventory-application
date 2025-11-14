@@ -9,20 +9,19 @@
   <%- include('partials/header', { categories }) %>
 
   <h1><%= title %></h1>
-  <p>A list of all items</p>
-
   <% if (items.length === 0) { %>
     <p>No items found.</p>
   <% } else { %>
-    <ul>
+    <div class="items-container">
       <% items.forEach(item => { %>
-        <li>
-          <strong><%= item.item_name %></strong> — 
-          <%= item.description %> — 
-          $<%= item.item_price %> — 
+        <div class="main">
+          <strong><%= item.item_name %></strong>
+          <br>
+          <p>Description: <%= item.description %></p>
+          <p>Price: $<%= item.item_price %></p>
           Category: <%= item.categoryname %>
 
-          <a href="/items/<%= item.item_id %>/edit">Edit</a>
+          <a class="edit" href="/items/<%= item.item_id %>/edit">Edit</a>
           <form 
             action="/items/<%= item.item_id %>/delete" 
             method="POST" 
@@ -30,11 +29,10 @@
             onsubmit="return confirm('Delete this item?');">
             <button type="submit">Delete</button>
           </form>
-        </li>
-      <% }) %>
-    </ul>
-  <% } %>
-
-  <a href="/items/new">Add New Item</a>
+        </div>
+         <% }) %>
+      <% } %>
+       <a class="edit" href="/items/new">Add New Item</a>
+    </div>
 </body>
 </html>
