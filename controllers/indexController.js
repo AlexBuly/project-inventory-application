@@ -9,7 +9,7 @@ const getIndexController = async(req, res) => {
             ORDER BY item.item_id ASC;
     `);
         res.render("index", {
-        title: "Home",
+        title: "All items",
         items,
         categories: res.locals.categories || [],
         });
